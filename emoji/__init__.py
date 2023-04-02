@@ -16,14 +16,14 @@ emoji terminal output for Python.
 
 
 # from emoji.core import emojize
-from emoji.core import demojize
-from emoji.core import get_emoji_regexp
-from emoji.core import emoji_count
-from emoji.core import emoji_lis
-from emoji.core import distinct_emoji_lis
-from emoji.core import import_from_annotation
-from emoji.unicode_codes import EMOJI_UNICODE, UNICODE_EMOJI
-from emoji.unicode_codes import EMOJI_ALIAS_UNICODE_ENGLISH, UNICODE_EMOJI_ALIAS_ENGLISH
+from emojiar.core import demojize
+from emojiar.core import get_emoji_regexp
+from emojiar.core import emoji_count
+from emojiar.core import emoji_lis
+from emojiar.core import distinct_emoji_lis
+from emojiar.core import import_from_annotation
+from emojiar.unicode_codes import EMOJI_UNICODE, UNICODE_EMOJI
+from emojiar.unicode_codes import EMOJI_ALIAS_UNICODE_ENGLISH, UNICODE_EMOJI_ALIAS_ENGLISH
 
 
 
