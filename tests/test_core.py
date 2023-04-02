@@ -2,19 +2,19 @@
 
 
 """
-Unittests for emoji.core
+Unittests for emojiar.core
 """
 
 
 from __future__ import unicode_literals
 
-import emoji
+import emojiar
 
 
 def test_emojize_name_only():
-    for name in emoji.EMOJI_UNICODE.keys():
-        actual = emoji.emojize(name, False)
-        expected = emoji.EMOJI_UNICODE[name]
+    for name in emojiar.EMOJI_UNICODE.keys():
+        actual = emojiar.emojize(name, False)
+        expected = emojiar.EMOJI_UNICODE[name]
         assert expected == actual, "%s != %s" % (expected, actual)
 
 
@@ -29,56 +29,56 @@ def test_emojize_complicated_string():
         ':flag_for_Curaçao:': u'\U0001F1E8\U0001F1FC'
     }
     string = ' complicated! '.join(list(name_code.keys()))
-    actual = emoji.emojize(string, False)
+    actual = emojiar.emojize(string, False)
     expected = string
     for name, code in name_code.items():
         expected = expected.replace(name, code)
-    expected = emoji.emojize(actual, False)
+    expected = emojiar.emojize(actual, False)
     assert expected == actual, "%s != %s" % (expected, actual)
 
 
 def test_emojize_invalid_emoji():
     string = '__---___--Invalid__--__-Name'
-    assert emoji.emojize(string, False) == string
+    assert emojiar.emojize(string, False) == string
 
 
 def test_alias():
     # When use_aliases=False aliases should be passed through untouched
-    assert emoji.emojize(':soccer:', use_aliases=False) == ':soccer:'
-    assert emoji.emojize(':soccer:', use_aliases=True) == emoji.EMOJI_ALIAS_UNICODE[':soccer:']
+    assert emojiar.emojize(':soccer:', use_aliases=False) == ':soccer:'
+    assert emojiar.emojize(':soccer:', use_aliases=True) == emojiar.EMOJI_ALIAS_UNICODE[':soccer:']
 
 
 def test_invalid_alias():
     # Invalid aliases should be passed through untouched
-    assert emoji.emojize(':tester:', use_aliases=True) == ':tester:'
+    assert emojiar.emojize(':tester:', use_aliases=True) == ':tester:'
 
 
 def test_demojize_name_only():
-    for name in emoji.EMOJI_UNICODE.keys():
-        oneway = emoji.emojize(name, False)
-        roundtrip = emoji.demojize(oneway)
+    for name in emojiar.EMOJI_UNICODE.keys():
+        oneway = emojiar.emojize(name, False)
+        roundtrip = emojiar.demojize(oneway)
         assert name == roundtrip, "%s != %s" % (name, roundtrip)
 
 
 def test_demojize_complicated_string():
     constructed = u"testing :baby::emoji_modifier_fitzpatrick_type-3: with :eyes: :eyes::eyes: modifiers :baby::emoji_modifier_fitzpatrick_type-5: to symbols ヒㇿ"
-    emojid = emoji.emojize(constructed)
-    destructed = emoji.demojize(emojid)
+    emojid = emojiar.emojize(constructed)
+    destructed = emojiar.demojize(emojid)
     assert constructed == destructed, "%s != %s" % (constructed, destructed)
 
 
 def test_emoji_lis():
-    assert emoji.emoji_lis("Hi, I am fine. 😁") == [{'location': 15, 'emoji': '😁'}]
-    assert emoji.emoji_lis("Hi") == []
-    assert emoji.emoji_lis("Hello 🇫🇷👌") == [{'emoji': '🇫🇷', 'location': 6}, {'emoji': '👌', 'location': 8}]
+    assert emojiar.emoji_lis("Hi, I am fine. 😁") == [{'location': 15, 'emoji': '😁'}]
+    assert emojiar.emoji_lis("Hi") == []
+    assert emojiar.emoji_lis("Hello 🇫🇷👌") == [{'emoji': '🇫🇷', 'location': 6}, {'emoji': '👌', 'location': 8}]
 
 
 def test_emoji_count():
-    assert emoji.emoji_count("Hi, I am fine. 😁") == 1
-    assert emoji.emoji_count("Hi") == 0
-    assert emoji.emoji_count("Hello 🇫🇷👌") == 2
+    assert emojiar.emoji_count("Hi, I am fine. 😁") == 1
+    assert emojiar.emoji_count("Hi") == 0
+    assert emojiar.emoji_count("Hello 🇫🇷👌") == 2
 
 
 def test_import_annotation():
-    emoji.import_from_annotation('tests/id.xml', 'id')
-    assert emoji.demojize("😁") == ":wajah gembira dengan mata bahagia:"
+    emojiar.import_from_annotation('tests/id.xml', 'id')
+    assert emojiar.demojize("😁") == ":wajah gembira dengan mata bahagia:"

@@ -3,7 +3,7 @@
 
 
 """
-Setup script for emoji
+Setup script for emojiar
 """
 
 
@@ -18,7 +18,7 @@ with open('README.md', encoding='utf-8') as f:
 
 
 author = email = source = version = None
-with open(os.path.join('emoji', '__init__.py'), encoding='utf-8') as f:
+with open(os.path.join('emojiar', '__init__.py'), encoding='utf-8') as f:
     for line in f:
         if line.strip().startswith('__version__'):
             version = line.split('=')[1].strip().replace('"', '').replace("'", '')
@@ -32,7 +32,7 @@ with open(os.path.join('emoji', '__init__.py'), encoding='utf-8') as f:
             break
 
 setup(
-    name='emoji',
+    name='emojiar',
     author=author,
     author_email=email,
     classifiers=[
@@ -56,7 +56,7 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
     description="Emoji for Python",
-    keywords=['emoji'],
+    keywords=['emojiar'],
     extras_require={
         'dev': [
             'pytest',
@@ -67,7 +67,7 @@ setup(
     include_package_data=True,
     license="New BSD",
     long_description=readme_content,
-    packages=['emoji'],
+    packages=['emojiar'],
     url=source,
     version=version,
     zip_safe=True,
