@@ -15,7 +15,7 @@ import sys
 
 import xml.etree.ElementTree as ET
 from tqdm import tqdm
-from emoji import unicode_codes
+from emojiar import unicode_codes
 
 
 __all__ = ['emojize', 'demojize', 'get_emoji_regexp',
@@ -116,7 +116,7 @@ def get_emoji_regexp(language='en'):
 def emoji_lis(string, language='en'):
     """
     Returns the location and emoji in list of dict format
-    >>> emoji.emoji_lis("Hi, I am fine. 😁")
+    >>> emojiar.emoji_lis("Hi, I am fine. 😁")
     >>> [{'location': 15, 'emoji': '😁'}]
     """
     _entities = []
